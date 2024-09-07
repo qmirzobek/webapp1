@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Register</title>
+    <script src="https://telegram.org/js/telegram-web-app.js"></script>
+</head>
+<body>
+    <div id="result"></div>
+    <script>
+    const telegram = window.Telegram.WebApp
+    const telegramData = telegram.initDataUnsafe
+    if (Object.keys(telegramData).length === 0 || typeof telegramData.user === 'undefined') {
+        document.querySelector("body").innerText =
+            "Xatolik, Green Market faqat @im_green_market_bot ichida xizmat ko'rsatadi !";
+        // window.location.href = "https://mproweb.uz/";
+    } else {
+        telegram.expand()
+        document.querySelector("#logbox").innerText = JSON.stringify(telegram, null, 4)
+    }
+    const themeParams = telegram.themeParams
+    const mainButton = telegram.MainButton
+    document.querySelector("#result").innerHTML=telegram
+    </script>
+</body>
+</html>
