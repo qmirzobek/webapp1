@@ -22,7 +22,7 @@
     }
     const themeParams = telegram.themeParams
     const mainButton = telegram.MainButton
-    document.querySelector("#result").innerHTML=JSON.stringify(telegram)
+    document.querySelector("#result").innerHTML=JSON.parse(JSON.stringify(telegram))
     </script>
 </body>
 </html>
