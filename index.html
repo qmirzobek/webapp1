@@ -8,6 +8,7 @@
 </head>
 <body>
     <h2>Hello world!</h2>
+    <p id="idk"></p>
     <div id="result"></div>
     <script>
     const telegram = window.Telegram.WebApp
@@ -22,6 +23,7 @@
     }
     const themeParams = telegram.themeParams
     const mainButton = telegram.MainButton
+        document.querySelector("#idk")=Telegram.WebApp.initData
     document.querySelector("#result").innerHTML=JSON.parse(JSON.stringify(telegram))
     </script>
 </body>
