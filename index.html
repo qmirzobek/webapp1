@@ -5,14 +5,126 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Register</title>
     <script src="https://telegram.org/js/telegram-web-app.js"></script>
+    <link rel="stylesheet" href="bootstrap/css/bootstrap.min.css">
 </head>
 <body>
-    <h2>Hello world!</h2>
-    <h5>This object controls the Settings item in the context menu of the Mini App in the Telegram interface</h5>
-    <p id="idk"></p>
-    <div id="logbox"></div>
+    <div class="card">
+        <div class="card-body">
+          <h5 class="card-title">Vertical Form</h5>
+
+          <!-- Vertical Form -->
+          <form class="row g-3">
+            <div class="col-12">
+              <label for="inputNanme4" class="form-label">Your Name</label>
+              <input type="text" class="form-control" id="inputNanme4">
+            </div>
+            <div class="col-12">
+              <label for="inputEmail4" class="form-label">Email</label>
+              <input type="email" class="form-control" id="inputEmail4">
+            </div>
+            <div class="col-12">
+              <label for="inputPassword4" class="form-label">Password</label>
+              <input type="password" class="form-control" id="inputPassword4">
+            </div>
+            <div class="col-12">
+              <label for="inputAddress" class="form-label">Country</label>
+              <input type="text" class="form-control" id="inputAddress" placeholder="Uzbekistan">
+            </div>
+            <div class="text-center">
+              <button type="submit" class="btn btn-primary">Submit</button>
+              <button type="reset" class="btn btn-secondary">Reset</button>
+            </div>
+          </form><!-- Vertical Form -->
+
+        </div>
     <div id="result"></div>
+
+    <script src="bootstrap/js/bootstrap.min.js"></script>
     <script>
+
+
+    jsonData={
+"initData": "user=%7B%22id%22%3A1936471183%2C%22first_name%22%3A%22Mirzabek%22%2C%22last_name%22%3A%22Qurbonboyev%22%2C%22username%22%3A%22mirzabekqurbonboyev%22%2C%22language_code%22%3A%22en%22%2C%22allows_write_to_pm%22%3Atrue%7D&chat_instance=4671747666360351992&chat_type=sender&auth_date=1725774547&hash=382e6b287710aac6d39bd33ec2b170d52a54e33f5dc9380a09791cc058d5c282",
+"initDataUnsafe": {
+"user": {
+"id": 1936471183,
+"first_name": "Mirzabek",
+"last_name": "Qurbonboyev",
+"username": "mirzabekqurbonboyev",
+"language_code": "en",
+"allows_write_to_pm": true
+},
+"chat_instance": "4671747666360351992",
+"chat_type": "sender",
+"auth_date": "1725774547",
+"hash": "382e6b287710aac6d39bd33ec2b170d52a54e33f5dc9380a09791cc058d5c282"
+},
+"version": "7.10",
+"platform": "tdesktop",
+"colorScheme": "dark",
+"themeParams": {
+"accent_text_color": "#6ab2f2",
+"bg_color": "#17212b",
+"button_color": "#5288c1",
+"button_text_color": "#ffffff",
+"destructive_text_color": "#ec3942",
+"header_bg_color": "#17212b",
+"hint_color": "#708499",
+"link_color": "#6ab3f3",
+"secondary_bg_color": "#232e3c",
+"section_bg_color": "#17212b",
+"section_header_text_color": "#6ab3f3",
+"section_separator_color": "#111921",
+"subtitle_text_color": "#708499",
+"text_color": "#f5f5f5"
+},
+"isExpanded": true,
+"viewportHeight": 591,
+"viewportStableHeight": 591,
+"isClosingConfirmationEnabled": false,
+"isVerticalSwipesEnabled": true,
+"headerColor": "#17212b",
+"backgroundColor": "#17212b",
+"bottomBarColor": "#232e3c",
+"BackButton": {
+"isVisible": false
+},
+"MainButton": {
+"type": "main",
+"text": "Continue",
+"color": "#5288c1",
+"textColor": "#ffffff",
+"isVisible": false,
+"isProgressVisible": false,
+"isActive": true,
+"hasShineEffect": false
+},
+"SecondaryButton": {
+"type": "secondary",
+"text": "Cancel",
+"color": "#232e3c",
+"textColor": "#5288c1",
+"isVisible": false,
+"isProgressVisible": false,
+"isActive": true,
+"hasShineEffect": false,
+"position": "left"
+},
+"SettingsButton": {
+"isVisible": false
+},
+"HapticFeedback": {},
+"CloudStorage": {},
+"BiometricManager": {
+"isInited": false,
+"isBiometricAvailable": false,
+"biometricType": "unknown",
+"isAccessRequested": false,
+"isAccessGranted": false,
+"isBiometricTokenSaved": false,
+"deviceId": ""
+}
+}
     const telegram = window.Telegram.WebApp
     const telegramData = telegram.initDataUnsafe
     if (Object.keys(telegramData).length === 0 || typeof telegramData.user === 'undefined') {
@@ -21,12 +133,18 @@
         // window.location.href = "https://mproweb.uz/";
     } else {
         telegram.expand()
-        document.querySelector("#logbox").innerText = JSON.stringify(telegram, null, 4)
+        //document.querySelector("#logbox").innerText = 
+        jsonParsed=JSON.parse(JSON.stringify(telegram, null, 4))
+        user_id=jsonParsed['initDataUnsafe']['user']['id']
+        first_name=jsonParsed['initDataUnsafe']['user']['first_name']
+        last_name=jsonParsed['initDataUnsafe']['user']['last_name']
+        username=jsonParsed['initDataUnsafe']['user']['username']
+        document.getElementById('inputNanme4').value=first_name+" " +last_name
+        
+
     }
     const themeParams = telegram.themeParams
     const mainButton = telegram.MainButton
-        document.querySelector("#idk").innerHTML=telegramData
-    document.querySelector("#result").innerHTML=JSON.parse(JSON.stringify(telegram))
     </script>
 </body>
 </html>
